@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Receita</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <h2>{{ receita.nome }} </h2>
+        <div class="subtitle">{{ receita.dificuldade }} </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <p>{{ receita.descricao }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header>
+            Ingredientes
+          </ion-list-header>
+          <ion-item *ngFor="let ingrediente of receita.ingredientes; let i = index">
+            <ion-input type="text" value="{{ ingrediente.nome }}" readonly></ion-input>
+            <ion-input type="number" value="{{ ingrediente.quantidade }}" readonly></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button icon-left outline (click)="alteraReceita()">
+          <ion-icon name="md-create"></ion-icon>
+          Alterar
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button icon-left outline color="danger" (click)="confirmaRemocao()">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="receita.ingredientes.length > 0">
+      <ion-col text-center>
+        <button ion-button icon-left clear (click)="adicionaIngredientes()">
+          <ion-icon name="add"></ion-icon>
+          Colocar na lista de compras 
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-buttons> 
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form"(ngSubmit)="registra()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>      
+      <div *ngIf="form.controls.email.value.length > 0 && form.controls.email.invalid">
+        <em style="color: red">Email inválido</em>
+      </div>
+    
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password" formControlName="senha"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Confirmar Senha</ion-label>
+        <ion-input type="password" formControlName="confirmaSenha"></ion-input>
+      </ion-item>
+      
+      <div *ngIf="form.controls.confirmaSenha.value.length > 0 && form.controls.confirmaSenha.invalid">
+        <em style="color: red">As senhas estão diferentes</em>
+      </div>
+
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="form.invalid">Cadastrar</button>
+  </form>
+</ion-content>
